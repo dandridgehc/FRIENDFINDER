@@ -1,7 +1,7 @@
 //DUMMY FRIENDS
 var userData = [
     {
-      "name": "Ahmed",
+      "name": "Jesus",
       "photo": "https://avatars0.githubusercontent.com/u/1561825?v=3&s=460",
       "scores":[
           5,
@@ -17,7 +17,7 @@ var userData = [
       ]
     },
     {
-      "name": "Joe",
+      "name": "Joe Shmoe",
       "photo": "https://avatars0.githubusercontent.com/u/1561825?v=3&s=460",
       "scores":[
           3,
@@ -33,7 +33,7 @@ var userData = [
       ]
     },
     {
-      "name": "Jane",
+      "name": "Starflower Apple",
       "photo": "https://avatars0.githubusercontent.com/u/1561825?v=3&s=460",
       "scores":[
           1,

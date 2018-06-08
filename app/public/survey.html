@@ -227,7 +227,7 @@
 		   
 			// Create var array for current user scores
             var myValues = userData.scores
-            console.log(friends)
+            console.log("friends:", friends)
             console.log("User Data: current user object", userData)
             console.log("MyValues: current user scores array",myValues)
 
@@ -237,10 +237,101 @@
             // for loops takes all individual friend scores and pushes them into single array
             for(i=0;i<friends.length;i++){
                 arrayFriendsScores.push(friends[i].scores)
-            }
+			}
+			
+			//empty diffence array 
+			var difference = []
+
+
+   // This for loop goes through the array of all friends scores and compares them to my scores. After the comparison is made it pushes all the values to the difference array
+   for (var j = 0; j < arrayFriendsScores.length; j++) {
+     for (var i = 0; i < arrayFriendsScores[j].length; i++) {
+       if (arrayFriendsScores[j][i] > myValues[i]){
+          // console.log( arrayFriendsScores[j][i] + ' was greater than ' + myValues[i])
+          // console.log('the diff is ', arrayFriendsScores[j][i] - myValues[i]);
+          difference.push(arrayFriendsScores[j][i] - myValues[i])
+       } else if (arrayFriendsScores[j][i] > myValues[i]){
+          // console.log( arrayFriendsScores[j][i] + ' was less than ' + myValues[i])
+          // console.log('the diff is ', myValues[i] - arrayFriendsScores[j][i])
+          difference.push(myValues[i] - arrayFriendsScores[j][i])
+       } else {
+         // console.log( arrayFriendsScores[j][i] + ' is equal to ' + myValues[i])
+         // console.log('the diff is ', 0)
+         difference.push(0)
+       }
+	 }
+   }
+	 console.log("difference array:", difference)
+
+
+    // Empty array for next loop
+	  var differnceSmallerArray = []
+
+	// this divides the big difference score array back in several arrays of 10 each
+   var size = 10;
+   for (var i=0; i<difference.length; i+=size) {
+      var smallarray = difference.slice(i,i+size);
+      differnceSmallerArray.push(smallarray)
+   }
+   console.log("differenceSmallerArray:", differnceSmallerArray)
+   
+
+    // Empty array for next loop
+	var sumDiffs = []
+    // Sum each of the smaller arrays for a total difference for each person and push into sumDiffs
+    for (var i = 0; i < differnceSmallerArray.length; i++) {
+      function getSum(total, num) {
+          return total + num;
+      }
+      sumDiffs.push(differnceSmallerArray[i].reduce(getSum))
+    }
+    console.log("sumDiffs:", sumDiffs);
+
+
+
+	 // which array has the smallest difference?
+    var index = 0;
+    var value = sumDiffs[0];
+    for (var i = 1; i < sumDiffs.length; i++) {
+      if (sumDiffs[i] < value) {
+        value = sumDiffs[i];
+        index = i;
+      }
+	}
+	
+
+	// Empty array for next loop
+	var chosenFriend = []
+
+	console.log("friends.friends", friends.friends)
+	//loop through friends (array) and push friend that mathes index from last step
+    chosenFriend.push(friends[index])
+	console.log(`smallest is ${value} and the index is ${index}`);
+	console.log("chosen friend", chosenFriend);
+    console.log("chosenFriend at 0:", chosenFriend[0]);
+
+
+
+
+
             console.log("Array of friends scores:", arrayFriendsScores)
 			//puts results in modal pop up 	
-	    	$("#resultsModal").modal()
+			//$("#resultsModal").modal()
+			
+
+
+
+		$('.modal-body').html(
+    		 `
+   		 <h1>${chosenFriend[0].name}</h1>
+  		<img src="${chosenFriend[0].photo}">
+     		`
+   			)
+  		$('#resultsModal').modal()
+
+
+
+
 		}
 		else
 		{
@@ -248,7 +339,9 @@
 		}
     	
     	return false;
-    });
+	});
+
+
   </script>
 
 </body>
