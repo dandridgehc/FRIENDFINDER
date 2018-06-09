@@ -305,22 +305,18 @@
 
 	console.log("friends.friends", friends.friends)
 	//loop through friends (array) and push friend that mathes index from last step
-    chosenFriend.push(friends[index])
+	chosenFriend.push(friends[index])
+	
+	//console log variables and sanity checks
 	console.log(`smallest is ${value} and the index is ${index}`);
 	console.log("chosen friend", chosenFriend);
     console.log("chosenFriend at 0:", chosenFriend[0]);
-
-
-
-
-
-            console.log("Array of friends scores:", arrayFriendsScores)
-			//puts results in modal pop up 	
-			//$("#resultsModal").modal()
+	console.log("Array of friends scores:", arrayFriendsScores)
+			
 			
 
 
-
+	// template string, inputs all chosen friend data into modal
 		$('.modal-body').html(
     		 `
    		 <h1>${chosenFriend[0].name}</h1>
@@ -332,12 +328,12 @@
 
 
 
+	// end of if statement
 		}
 		else
 		{
 			alert("Answer all the questions you friendless fool!");
 		}
-    	
     	return false;
 	});
 
